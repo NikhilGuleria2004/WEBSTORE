@@ -1030,7 +1030,39 @@
                 width: 60px;
                 height: 60px;
             }
-        }
+        }/* About Us Modal Styles */
+#aboutUsModal .modal-container {
+    max-width: 800px;
+    padding: 40px;
+}
+
+#aboutUsModal .modal-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--dark-color);
+    font-size: 32px;
+}
+
+#aboutUsModal .features-container {
+    margin-bottom: 30px;
+}
+
+#aboutUsModal .about-text {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#aboutUsModal .about-text p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+#aboutUsModal .about-text p:last-child {
+    margin-bottom: 0;
+}
+        
     </style>
 </head>
 <body>
@@ -1067,7 +1099,7 @@
                     <li><a href="#productGrid">Shop</a></li>
                     <li><a href="#productGrid">Categories</a></li>
                     <li><a href="#productGrid">Deals</a></li>
-                    <li><a href="#aboutSec">About Us</a></li>
+                    <li><a href="#aboutUS">About Us</a></li>
                     <li><a href="#aboutSec">Contact</a></li>
                 </ul>
             </div>
@@ -1083,9 +1115,9 @@
             <a href="#" class="btn btn-secondary">Number 1 Online Distributor</a>
         </div>
     </section>
-
+    
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" >
         <div class="container">
             <div class="features-container">
                 <div class="feature-box">
@@ -1093,7 +1125,7 @@
                     <h3>Free Shipping</h3>
                     <p>On all orders over ₹50</p>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box" >
                     <i class="fa-solid fa-shield-halved"></i>
                     <h3>Secure Payment</h3>
                     <p>100% secure payment</p>
@@ -1410,6 +1442,42 @@
             </div>
         </div>
     </div>
+    <!-- About Us Modal -->
+<div class="modal-overlay" id="aboutUsModal">
+    <div class="modal-container">
+        <button class="modal-close" id="closeAboutModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-content">
+            <h2>About WebStore</h2>
+            <div class="features-container">
+                <div class="feature-box">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On all orders over ₹50</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Secure Payment</h3>
+                    <p>100% secure payment</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <h3>Easy Returns</h3>
+                    <p>30 day return policy</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated support</p>
+                </div>
+            </div>
+            <div class="about-text">
+                <p>WebStore is your premier destination for cutting-edge technology and electronics. Founded in 2020, we've grown from a small startup to one of the leading online tech retailers in the region.</p>
+                <p>Our mission is to provide high-quality products at competitive prices, backed by exceptional customer service. We carefully curate our product selection to ensure we offer only the best and most reliable tech solutions.</p>
+                <p>With over 50,000 satisfied customers and counting, we're proud to be your trusted technology partner.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         // Product Data
@@ -2240,7 +2308,31 @@
                 });
             });
         }
-        
+        // About Us Modal Elements
+const aboutUsLink = document.querySelector('a[href="#aboutUS"]');
+const aboutUsModal = document.getElementById('aboutUsModal');
+const closeAboutModal = document.getElementById('closeAboutModal');
+
+// Open About Us Modal
+aboutUsLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    aboutUsModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+});
+
+// Close About Us Modal
+closeAboutModal.addEventListener('click', () => {
+    aboutUsModal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+// Close when clicking outside modal
+aboutUsModal.addEventListener('click', (e) => {
+    if (e.target === aboutUsModal) {
+        aboutUsModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
         // Observe DOM changes to apply zoom effect to new products
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
